@@ -120,4 +120,7 @@ Deployed on Render as a Node.js web service. Environment variables are set in th
 
 ## License
 
-MIT — feel free to use this as inspiration for your own projects.
+Copyright (c) 2026 Robbie Guthrie. All Rights Reserved.
+
+This project is publicly visible for portfolio and review purposes only.
+Copying, modifying, or redistributing this code is not permitted without explicit written permission from the author.
