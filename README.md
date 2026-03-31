@@ -104,7 +104,17 @@ Deployed on Render as a Node.js web service. Environment variables are set in th
 
 ## Screenshots
 
-*(Add screenshots here — drag and drop images into this README on GitHub)*
+<img width="1899" height="964" alt="image" src="https://github.com/user-attachments/assets/9933355e-5128-43cf-8690-cd8f0e0c2bf3" />
+<img width="1565" height="917" alt="image" src="https://github.com/user-attachments/assets/64d2b7d9-f8ea-491a-90c1-fe3a58e88bcb" />
+<img width="1398" height="836" alt="image" src="https://github.com/user-attachments/assets/09a9b019-98e9-4f6a-9faa-bbf3c333134e" />
+<img width="1264" height="597" alt="image" src="https://github.com/user-attachments/assets/e405dd81-35ac-4d4b-a381-ce89136b0ac2" />
+<img width="1321" height="941" alt="image" src="https://github.com/user-attachments/assets/4bd4365f-9a81-4cb7-9db7-938a559d3de6" />
+<img width="1293" height="941" alt="image" src="https://github.com/user-attachments/assets/144324c1-9c9c-4fe1-802c-968459e2eaf2" />
+
+
+
+
+
 
 ---
 
