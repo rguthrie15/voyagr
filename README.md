@@ -8,19 +8,30 @@
 
 ## About
 
-Voyagr lets users generate a complete, personalized travel plan in seconds. Enter a destination, travel dates, group size, budget, and trip vibe — and Claude AI instantly produces a full itinerary, hotel and restaurant suggestions, a budget breakdown, and a custom packing list.
+Voyagr lets users generate a complete, personalized travel plan in seconds. Enter a destination, travel dates, group size, budget, and trip vibe — and Claude AI instantly produces a full itinerary, hotel and restaurant suggestions, a budget breakdown, a packing list, and much more.
 
 ---
 
 ## Features
 
+### Core
 - **AI-Generated Itineraries** — Day-by-day travel plans tailored to your style and budget
-- **Hotel & Restaurant Suggestions** — Curated picks with Google search links
-- **Budget Breakdown** — Estimated costs per category with visual bars
+- **Hotel & Restaurant Suggestions** — Curated picks with direct Google search links
+- **Budget Breakdown** — Estimated costs per category with visual progress bars
 - **Interactive Packing List** — Checkable items generated based on destination and trip type
-- **Destination Autocomplete** — 700+ cities, towns, and US National Parks
-- **PDF Download** — Export the full itinerary as a PDF to save or share
-- **Fully Responsive** — Works on desktop and mobile
+- **PDF Download** — Export the full itinerary as a clean PDF to save or share
+
+### Smart Search
+- **Destination Autocomplete** — 700+ cities, towns, national parks and destinations worldwide with flag icons
+- **Scored matching** — Results ranked by relevance, not just alphabetical order
+
+### New Features
+- **✈️ Flight Search** — One-click link to Google Flights pre-filled with your destination and dates
+- **🎲 Surprise Me** — Randomly picks a destination, dates, and trip vibe so you can discover somewhere new
+- **🌤️ Live Weather** — Real forecast for your trip dates powered by Open-Meteo (no API key required)
+- **🔗 Share Itinerary** — Generates a shareable link so travel companions can view the full plan
+- **🗺️ Interactive Map** — Plots your daily activities on a live OpenStreetMap
+- **⚖️ Budget vs Luxury Comparison** — Claude generates two versions of your trip side by side so you can compare options
 
 ---
 
@@ -31,6 +42,9 @@ Voyagr lets users generate a complete, personalized travel plan in seconds. Ente
 | Frontend | HTML, CSS, Vanilla JavaScript |
 | Backend | Node.js (no frameworks) |
 | AI | Anthropic Claude API (claude-sonnet) |
+| Maps | Leaflet.js + OpenStreetMap |
+| Weather | Open-Meteo API (free, no key) |
+| Geocoding | Open-Meteo Geocoding API |
 | Deployment | Render |
 | Version Control | GitHub |
 
@@ -39,16 +53,21 @@ Voyagr lets users generate a complete, personalized travel plan in seconds. Ente
 ## How It Works
 
 1. User fills out the trip form (destination, dates, travelers, budget, vibe)
-2. Frontend sends the trip details to the Node.js backend at /api/chat
+2. Frontend sends trip details to the Node.js backend at /api/chat
 3. Backend securely forwards the request to the Anthropic Claude API
 4. Claude returns a structured JSON travel plan
-5. Frontend parses and renders the plan across 4 tabs
+5. Frontend renders the plan across 6 tabs — Itinerary, Hotels & Restaurants, Budget, Packing List, Map, and Compare
+6. Weather data is fetched in parallel from Open-Meteo using the destination coordinates
 
 The backend acts as a secure proxy — the API key never touches the browser.
 
 ```
-Browser → POST /api/chat → server.js → Anthropic API
+Browser → POST /api/chat → server.js → Anthropic Claude API
                                       ← Structured JSON response
+
+Browser → Open-Meteo Geocoding API   ← lat/lng coordinates
+Browser → Open-Meteo Forecast API    ← weather data
+Browser → OpenStreetMap tiles        ← map rendering
 ```
 
 ---
@@ -85,20 +104,25 @@ npm start
 
 ```
 voyagr/
-├── index.html        # Single-page app UI
-├── style.css         # All styles — dark luxury theme
-├── app.js            # Frontend logic, API calls, autocomplete
-├── server.js         # Node.js backend — API proxy + static file server
-├── package.json      # Dependencies
-├── render.yaml       # Render deployment config
-└── .env.example      # Environment variable template
+├── index.html        # Single-page app UI — all tabs and modals
+├── style.css         # All styles — dark luxury theme with gold accents
+├── app.js            # Frontend logic — API calls, autocomplete, map, weather, share, compare
+├── server.js         # Node.js backend — secure API proxy + static file server
+├── package.json      # Project config and dependencies
+├── render.yaml       # Render deployment configuration
+├── .env.example      # Environment variable template
+└── README.md
 ```
 
 ---
 
 ## Deployment
 
-Deployed on Render as a Node.js web service. Environment variables are set in the Render dashboard — the API key is never stored in the repository.
+Deployed on [Render](https://render.com) as a Node.js web service.
+
+Environment variables are configured in the Render dashboard — the Anthropic API key is never stored in the repository.
+
+Auto-deploys on every push to the `main` branch.
 
 ---
 
@@ -110,10 +134,6 @@ Deployed on Render as a Node.js web service. Environment variables are set in th
 <img width="1264" height="597" alt="image" src="https://github.com/user-attachments/assets/e405dd81-35ac-4d4b-a381-ce89136b0ac2" />
 <img width="1321" height="941" alt="image" src="https://github.com/user-attachments/assets/4bd4365f-9a81-4cb7-9db7-938a559d3de6" />
 <img width="1293" height="941" alt="image" src="https://github.com/user-attachments/assets/144324c1-9c9c-4fe1-802c-968459e2eaf2" />
-
-
-
-
 
 
 ---
